@@ -3,5 +3,16 @@
   <td><%= company.name.upcase %></td>
   <td><%= company.provision_key %></td>
   <td><%= company.user_cap %></td>
-  <td><%= link_to('Show', admin_company_path(company)) %></td>
+  <td>
+    <%= link_to(admin_company_path(company)) do %>
+      <i class="fas fa-binoculars fa-lg" style='margin-right: 5px'></i>
+    <% end %>
+    <%= link_to(admin_company_users_path(company)) do %>
+      <i class="fas fa-users fa-lg" style='margin-right: 5px'></i>
+    <% end %>
+    <%= link_to(admin_company_reports_path(company)) do %>
+      <i class="far fa-clipboard-list-check fa-lg" style='margin-right: 5px'></i>
+    <% end %>
+  </td>
+  
 </tr>

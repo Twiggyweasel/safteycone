@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
   namespace :admin, :admin => true  do
-    resources :companies
-    resources :users
-    resources :reports
+    resources :companies do 
+      resources :reports
+      resources :users
+    end
+    resources :users, only: [:index]
+    resources :reports, only: [:index]
   end
 
   namespace :api do

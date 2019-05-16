@@ -1,7 +1,7 @@
 <section class='section'>
   <div class='container'>
     <div class='columns'>
-      <div class='column'>
+      <div class='column is-three-fifths is-offset-one-fifth'>
         <h1 class='title is-inline-block'>
           Companies
         </h1>
@@ -10,6 +10,20 @@
             Create Company
           <% end %>
         </span>
+        <table class='table is-fullwidth'>
+          <thead>
+            <tr>
+              <td>ID</td>
+              <td>Client Name</td>
+              <td>Provision Key</td>
+              <td>User Cap</td>
+              <td>Actions</td>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render @companies %>
+          </tbody>
+        </table>
       </div>
     </div>
     

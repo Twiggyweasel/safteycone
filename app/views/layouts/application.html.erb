@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    <%= render 'admin/shared/nav' if params[:admin] %>
     <%= yield %>
   </body>
 </html>

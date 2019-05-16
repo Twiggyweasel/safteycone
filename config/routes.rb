@@ -1,15 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'reports/index'
-    get 'reports/show'
-    get 'reports/new'
-    get 'reports/create'
-    get 'reports/edit'
-    get 'reports/update'
-    get 'reports/destroy'
-  end
-  namespace :admin do
+  namespace :admin, :admin => true  do
     resources :companies
     resources :users
     resources :reports

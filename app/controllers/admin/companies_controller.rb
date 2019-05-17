@@ -40,6 +40,6 @@ class Admin::CompaniesController < ApplicationController
     end
     
     def set_company
-      @company = Company.find(params[:id])
+      @company = Company.includes(:employees, :company_admins).find(params[:id])
     end
 end

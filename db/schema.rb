@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 2019_05_14_022145) do
     t.string "name"
     t.string "provision_key"
     t.integer "user_cap"
+    t.boolean "has_app_access", default: true
+    t.boolean "has_admin_access", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'ffaker'
+
+
+5.times do 
+  c = Company.create(name: FFaker::Company.name, provision_key: FFaker::Skill.tech_skill, user_cap: 5)
+  5.times do 
+    User.create(first_name: FFaker::Name.first_name, last_name: FFaker::Name.last_name, contact_number: FFaker::PhoneNumber.short_phone_number, email: FFaker::Internet.email, account_type: rand(1..2), company_id: c.id)
+  end
+end

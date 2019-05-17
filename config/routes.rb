@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'pages/dashboard'
+    get 'pages/reports'
+  end
   namespace :admin, :admin => true  do
     resources :companies do 
       resources :reports

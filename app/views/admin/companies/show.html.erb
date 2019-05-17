@@ -1,2 +1,62 @@
-<h1>Admin::Companies#show</h1>
-<p>Find me in app/views/admin/companies/show.html.erb</p>
+<section class='section'>
+  <div class='container'>
+    <div class='columns'>
+      <div class='column'>
+        <h1 class='title'>
+          <%= @company.name %>
+        </h1>        
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class='section'>
+  <div class='container'>
+    <div class='columns'>
+      <div class='column is-three-quarters'>
+        <h2 class='title is-4 is-inline-block'>
+          Admins
+        </h2>
+        <table class='table is-fullwidth'>
+          <thead>
+            <tr>
+              <td>ID</td>
+              <td>Name</td>
+              <td>Contact Number</td>
+              <td>Email</td>
+              <td>Actions</td>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render partial: 'user', collection: @company.employees %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div> 
+</section>
+<section class='section'>
+  <div class='container'>
+    <div class='columns'>
+      <div class='column is-three-quarters'>
+        <h2 class='title is-4 is-inline-block'>
+          Employees
+        </h2>
+        <table class='table is-fullwidth'>
+          <thead>
+            <tr>
+              <td>ID</td>
+              <td>Name</td>
+              <td>Contact Number</td>
+              <td>Email</td>
+              <td>Actions</td>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render partial: 'user', collection: @company.company_admins %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

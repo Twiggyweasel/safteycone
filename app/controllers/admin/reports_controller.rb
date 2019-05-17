@@ -1,22 +1,54 @@
+# frozen_string_literal: true
+
+# Controller for Reports in the Admin Namespace
 class Admin::ReportsController < ApplicationController
+  before_action :set_company
+  before_action :report, only: %i[show edit update destroy]
   def index
+    @reports = @company.reports
   end
 
-  def show
-  end
+  def show; end
 
   def new
+    @report = Report.new
   end
 
   def create
+    @report = Report.create(report_params)
+    if @report.save
+      redirect_to [:admin, @company, :reports]
+    else
+      render :new
+    end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
+    if @report.update(report_params)
+      redirect_to [:admin, @company, :reports]
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @report.destroy
+    redirect_to [:admin, @company, :reports]
   end
+
+  private
+
+    def report_params
+      params.require(:report).permit(:company_id, :user_id)
+    end
+
+    def set_company
+      @company = Company.includes(:reports).find(params[:company_id])
+    end
+
+    def set_report
+      @report = Report.includes(:user).find(params[:id])
+    end
 end

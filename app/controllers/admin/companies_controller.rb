@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# Controller for Companies in the Admin Namespace
 class Admin::CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :set_company, only: %i[show edit update destroy]
   def index
     @companies = Company.all
   end
@@ -31,14 +34,15 @@ class Admin::CompaniesController < ApplicationController
 
   def destroy
     @company.delete
-    redirect_to([:admin, :companies])
+    redirect_to(%i[admin companies])
   end
-  
-  private 
+
+  private
+
     def company_params
       params.require(:company).permit(:name, :provision_key, :user_cap)
     end
-    
+
     def set_company
       @company = Company.includes(:employees, :company_admins).find(params[:id])
     end

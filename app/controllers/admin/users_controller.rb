@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
+# controller for Users in the Admin Namespace
 class Admin::UsersController < ApplicationController
   before_action :set_company
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  
+  before_action :set_user, only: %i[show edit update destroy]
+
   def index
     @users = @company.users
   end
@@ -35,17 +38,17 @@ class Admin::UsersController < ApplicationController
     @user.destroy
     redirect_to [:admin, @company, :users]
   end
-  
+
   private
-  
+
     def user_params
       params.require(:user).permit(:first_name, :last_name, :account_type, :company_id)
     end
-  
+
     def set_company
       @company = Company.find(params[:company_id])
     end
-    
+
     def set_user
       @user = User.find(params[:id])
     end

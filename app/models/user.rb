@@ -10,14 +10,20 @@ class User < ApplicationRecord
   has_many :reports
 
   # validations
-  validates :company, presence: true, if: :not_admin
+  validates :company, presence: true, if: :is_company_employee?
   validates :first_name, presence: true, length: { in: 3..50 }
   validates :last_name, presence: true, length: { in: 3..50 }
   validates :account_type, presence: true
+  validates :contact_number, presence: true
+  validates :email, presence: true
 
   # methods
-  def not_admin
-    true unless account_type == 'admin'
+  def is_company_employee?
+    true if account_type != "admin"
+  end
+  
+  def is_admin?
+    !is_company_employee?
   end
 
   def fullname

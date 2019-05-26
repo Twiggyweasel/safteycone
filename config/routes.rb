@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   end
   namespace :admin, :admin => true  do
     resources :companies do 
-      resources :reports
+      resources :reports do 
+        get 'success', on: :member
+      end
       resources :users
     end
     resources :users, only: [:index]

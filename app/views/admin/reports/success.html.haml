@@ -1,0 +1,25 @@
+%section.section
+  .container
+    .columns{:style => 'margin-top: 4rem; margin-bottom: 2rem;'}
+      .column.is-half.is-offset-one-quarter.has-text-centered
+        #span.fa-stack.fa-2x
+        #i.fal.fa-circle.fa-2x.fa-stack-2x
+        #i.fa.fa-check.fa-4x.fa-stack-1x.has-text-primary{'data-fa-transform' => 'right-2 up-1'}
+  .container
+    .columns{:style => 'margin-top: 2rem; margin-bottom: 2rem;'}
+      .column.is-half.is-offset-one-quarter.has-text-centered
+        %h1.title.is-2 Safety Check Complete
+        %br
+        %h2.subtitle Your safety check has been logged for #{@report.user.fullname}!     
+        .columns{:style => 'margin-top: 2rem; margin-bottom: 2rem;'}
+          .column.is-8.is-offset-2.has-text-left
+            .box
+              %p.title.is-4 Report Details
+              %p Location: Shawnee, KS
+              %p Completed: #{@report.completion_date.strftime("%m/%d/%Y at %I:%M%p")}
+        .columns{:style => 'margin-top: 2rem; margin-bottom: 2rem;'}
+          .column
+            = link_to 'Company', [:admin, @company], class: 'button is-primary'
+            = link_to 'View Full Report', [:admin, @company, @report], class: 'button is-danger'
+        
+        

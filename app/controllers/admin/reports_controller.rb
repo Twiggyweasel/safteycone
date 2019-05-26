@@ -3,7 +3,7 @@
 # Controller for Reports in the Admin Namespace
 class Admin::ReportsController < ApplicationController
   before_action :set_company
-  before_action :report, only: %i[show edit update destroy]
+  before_action :set_report, only: %i[show edit update destroy success]
   def index
     @reports = @company.reports
   end
@@ -17,7 +17,7 @@ class Admin::ReportsController < ApplicationController
   def create
     @report = Report.create(report_params)
     if @report.save
-      redirect_to [:admin, @company, :reports]
+      redirect_to [:admin, @company, @report, :success]
     else
       render :new
     end
@@ -37,6 +37,8 @@ class Admin::ReportsController < ApplicationController
     @report.destroy
     redirect_to [:admin, @company, :reports]
   end
+  
+  def success; end
 
   private
 

@@ -1,0 +1,9 @@
+%tr
+  %td 
+    = link_to truck.vehicle_number, [:admin, @company, truck]
+  %td #{truck.last_odometer_reading}
+  %td 
+    = truck.last_odometer_date.strftime('%m/%d/%Y') unless truck.last_odometer_date.blank?
+  %td 
+    = truck.last_service_date.strftime('%m/%d/%Y') unless truck.last_service_date.blank?
+  %td #{truck.is_active? ? "Active" : "Inactive"}

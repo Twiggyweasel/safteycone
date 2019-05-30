@@ -13,13 +13,13 @@ class Api::V1::ReportsController < ApplicationController
 
   def create
   end
-  
+
   private
-  
+
     def get_user
       @user = User.find(params[:user_id])
     end
-  
+
     def get_report
       @report = Report.find(params[:id])
     end

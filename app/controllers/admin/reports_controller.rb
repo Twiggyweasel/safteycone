@@ -12,12 +12,13 @@ class Admin::ReportsController < ApplicationController
 
   def new
     @report = Report.new
+    @report.truck_checks.build
   end
 
   def create
     @report = Report.create(report_params)
     if @report.save
-      redirect_to [:admin, @company, @report, :success]
+      redirect_to [:success, :admin, @company, @report]
     else
       render :new
     end
@@ -37,13 +38,15 @@ class Admin::ReportsController < ApplicationController
     @report.destroy
     redirect_to [:admin, @company, :reports]
   end
-  
+
   def success; end
 
   private
 
     def report_params
-      params.require(:report).permit(:company_id, :user_id)
+      params.require(:report).permit(:record_number, :is_complete, :street, :city, :state, :zipcode, 
+                                     :completion_date, :company_id, :user_id, 
+                                     truck_checks_attributes: [:truck_id, :report_id, :odometer_reading, :has_defects, defect_ids: []])
     end
 
     def set_company

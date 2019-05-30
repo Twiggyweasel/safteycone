@@ -1,0 +1,5 @@
+%tr
+  %td 
+    = link_to report.record_number, [:admin, @company, report]
+  %td #{report.user.fullname}
+  %td #{report.is_complete? ? 'Complete' : 'In Progress'}

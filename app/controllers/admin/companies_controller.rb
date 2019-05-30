@@ -7,7 +7,9 @@ class Admin::CompaniesController < ApplicationController
     @companies = Company.all
   end
 
-  def show; end
+  def show
+    @reports = @company.reports.order(created_at: 'desc').limit(5)
+  end
 
   def new
     @company = Company.new

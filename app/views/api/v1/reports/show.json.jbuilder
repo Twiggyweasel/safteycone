@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.report do
   json.record_id @report.record_id
   json.is_complete @report.is_complete

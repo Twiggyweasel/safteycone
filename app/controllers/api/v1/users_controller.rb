@@ -5,11 +5,11 @@ class Api::V1::UsersController < ApplicationController
   def index
     @users = User.all
   end
-  
+
   def show; end
-  
+
   private
-  
+
     def get_user
       @user = User.includes(:reports, :company).find(params[:id])
     end

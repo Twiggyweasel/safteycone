@@ -8,6 +8,7 @@ class Company < ApplicationRecord
   has_many :company_admins, -> { where account_type: "company_admin" },
            class_name: "User"
   has_many :reports, through: :employees
+  has_many :trucks
 
   validates :name, presence: true, length: { in: 3..50 }
   validates :provision_key, presence: true, length: { in: 3..20 }

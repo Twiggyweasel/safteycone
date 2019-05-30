@@ -1,4 +1,73 @@
-= form_for [:admin, @report] do |f|
+= render 'admin/shared/errors', errors: @report.errors unless @report.errors.blank?
+
+= form_for [:admin, @company, @report] do |f|
+  %h2.title.is-4 Report Details
+  .field
+    %label.label Location
+  .field
+    = f.text_field :record_number, class: 'input' unless @report.new_record?
+  .field
+    %p.control.has-icons-left
+      = f.text_field :street, class: 'input', placeholder: 'Street address'
+      %span.icon.is-small.is-left
+        %i.far.fa-road
+  .field.is-horizontal
+    .field-body
+      .field
+        = f.text_field :city, class: 'input', placeholder: 'City'
+      .field
+        .select
+          = f.select :state, options_for_select(states, @report.state), { prompt: 'State'}
+      .field
+        = f.text_field :zipcode, class: 'input', placeholder: 'Zipcode'
+  .field
+    %label.label Employee 
+  .field.is-fullwidth
+    %p.control.has-icons-left    
+      %span.select.is-fullwidth
+        = f.select :user_id, options_for_select(@company.users.map { |u| [u.fullname, u.id] }, @report.user_id), { prompt: "Choose One" }
+      %span.icon.is-small.is-left
+        %i.fa.fa-user
   = f.label :completion_date, class: 'label'
-  = f.input :completion_date, class: 'input'
-  
+  .field.is-horizontal
+    .field-body
+      .field
+        = f.date_field :completion_date, class: 'input'
+      .field
+        = f.time_field :completion_date, class: 'input'
+  .field
+    %h4.title.is-4 Truck Details
+  = f.fields_for :truck_checks do |ff|
+    .field.is-fullwidth
+      %p.control.has-icons-left
+        %span.select.is-fullwidth
+          = ff.select :truck_id, options_for_select(@company.trucks.active.map { |u| [u.vehicle_number, u.id] }), { prompt: 'Choose a Truck'}
+        %span.icon.is-small.is-left
+          %i.far.fa-truck
+    .field
+      %p.control.has-icons-left
+        = ff.number_field :odometer_reading, class: 'input', placeholder: 'Odometer Reading'
+        %span.icon.is-small.is-left
+          %i.far.fa-tachometer-alt-slow
+    .field
+      %label.checkbox
+        = ff.check_box :has_defects, id: 'has_defects' 
+        Were any defects identified on the vehicle
+    #defect_box.field{ style: 'display: none;'}
+      = ff.label :defects, class: 'label'
+      .columns
+        - Defect.in_batches(of: 10).each do |batch|
+          .column
+            - batch.each do |d|
+              .field
+                %label.checkbox
+                  = ff.check_box :defect_ids, { multiple: true }, d.id, false
+                  #{d.name}   
+      .field
+        = ff.label :remarks, class: 'label'
+        = ff.text_field :remarks, class: 'textarea'
+  .field.is-grouped.is-grouped-centered
+    %p.control
+      = f.submit @report.new_record? ? "Create Report" : "Update Report", class: 'button is-success'
+    %p.control
+      = link_to 'Cancel', [:admin, @company], class: 'button is-danger'

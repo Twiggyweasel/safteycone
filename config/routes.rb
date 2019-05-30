@@ -1,21 +1,14 @@
 Rails.application.routes.draw do
 
-  get 'reports/index'
-  get 'reports/show'
-  get 'reports/new'
-  get 'reports/create'
-  get 'reports/edit'
-  get 'reports/update'
-  get 'reports/destroy'
-  namespace :admin do
-    get 'pages/dashboard'
-    get 'pages/reports'
-  end
+  get '/admin', to: redirect('/admin/dashboard')
   namespace :admin, :admin => true  do
+    get 'dashboard', to: 'pages#dashboard'
+    get 'pages/reports'
     resources :companies do 
       resources :reports do 
         get 'success', on: :member
       end
+      resources :trucks
       resources :users
     end
     resources :users, only: [:index]
@@ -24,8 +17,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources 
-      resources :users do 
+      resources :users, only: [:show] do 
         resources :reports, only: [:index, :show, :new, :create]
       end
     end

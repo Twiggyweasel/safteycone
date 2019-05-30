@@ -1,0 +1,38 @@
+%section.section
+  .container
+    .columns
+      .column
+        %h1.title #{@company.name}
+%section.section
+  .container
+    .columns
+      .column
+        %h2.title.is-4 Admins
+        %table.table
+          %thead
+            %tr
+              %th Employee Number
+              %th Full Name
+          %tbody
+            = render partial: 'user', collection: @company.company_admins
+      .column
+        %h2.title.is-4 Employees
+        %table.table
+          %thead
+            %tr
+              %th Employee Number
+              %th Full Name
+          %tbody
+            = render partial: 'user', collection: @company.employees
+      .column
+        %h2.title.is-4 
+          = link_to 'Recent Reports', [:admin, @company, :reports]
+        %table.table
+          %thead
+            %tr
+              %th Record Number
+              %th Logged By
+              %th Status
+          %tbody
+            = render partial: 'report', collection: @reports
+      

@@ -1,0 +1,13 @@
+= link_to 'Company Reports', [:admin, @company, :reports]
+%section.section
+  .container
+    .columns
+      .column.is-four-fifths
+        %h1.title.is-inline-block Record Number: #{@report.record_number}
+        = status_builder(@report.is_complete)
+        
+      .column
+        %figure.image.is-128x128{style: 'margin: 0 auto;'}
+          %img.is-rounded{:src => 'https://placehold.it/128x128'}
+          %figcaption.title.is-4.has-text-centered{style: 'margin-top: 1rem;'} #{@report.user.fullname}
+

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.user do
   json.fullname @user.fullname
   json.contact_number @user.contact_number

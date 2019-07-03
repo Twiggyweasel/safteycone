@@ -1,8 +1,8 @@
-.container
+.container{style:'margin-top: 1rem;'}
   .columns
-    .column
+    .column.is-6.is-offset-3
       .box
         %p.title.is-4 Errors
         %ul
-          = errors.full_messages.each do |e|
+          - errors.full_messages.each do |e|
             %li #{e}

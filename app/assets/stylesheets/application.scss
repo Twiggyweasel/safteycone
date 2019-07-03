@@ -15,6 +15,15 @@
  *= require_self
  */
 
+.field_with_errors .input {
+  border-color: #ff3860
+}
+
+.field_with_errors .input:focus {
+  box-shadow:0 0 0 .125em rgba(255,56,96,.25)
+}
+
+
 .fixed {
   position: sticky;
   top: 20px;

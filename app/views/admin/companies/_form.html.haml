@@ -1,0 +1,18 @@
+= form_for [:admin, @company] do |f|
+  .field
+    = f.label :name, class: 'label'
+    = f.text_field :name, class: 'input is-danger'
+    = render 'admin/shared/inline_error', error: @company.errors[:name].first if @company.errors[:name].any?
+  .field
+    = f.label :provision_key, class: 'label'
+    = f.text_field :provision_key, class: 'input'
+    = render 'admin/shared/inline_error', error: @company.errors[:provision_key].first if @company.errors[:provision_key].any?
+  .field
+    = f.label :user_cap, class: 'label'
+    = f.number_field :user_cap, class: 'input'
+    = render 'admin/shared/inline_error', error: @company.errors[:user_cap].first if @company.errors[:user_cap].any?
+  .field.is-grouped.is-grouped-centered
+    %p.control
+      = f.submit(@company.new_record? ? "Create" : "Update", class: 'button is-primary is-fullwidth')  
+    %p.control
+      = link_to("Cancel", admin_companies_path, class: 'button is-danger is-fullwidth')

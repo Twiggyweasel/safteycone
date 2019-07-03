@@ -5,7 +5,7 @@ class Admin::ReportsController < ApplicationController
   before_action :set_company
   before_action :set_report, only: %i[show edit update destroy success]
   def index
-    @reports = @company.reports
+    @reports = @company.reports.includes(:user)
   end
 
   def show; end

@@ -9,6 +9,7 @@ class Company < ApplicationRecord
            class_name: "User"
   has_many :reports, through: :employees
   has_many :trucks
+  has_many :assets
 
   validates :name, presence: true, length: { in: 3..50 }
   validates :provision_key, presence: true, length: { in: 3..20 }

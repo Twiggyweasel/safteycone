@@ -1,38 +1,114 @@
 %section.section
   .container
     .columns
+      .column.is-9
+        .box  
+          %h1.title.is-inline-block #{@company.name}
+          %span.is-pulled-right
+            .field.is-grouped.is-grouped-multiline
+              .control
+                = link_to([:toggle_company_status, :admin, @company], class: 'tags has-addons', remote: true) do
+                  %span.tag Status
+                  - if @company.is_active
+                    %span.tag.is-success#company-status-display
+                      %i.far.fa-check-circle.fa-fw
+                  - else
+                    %span.tag.is-danger#company-status-display
+                      %i.far.fa-times-circle.fa-fw
+              .control
+                = link_to([:toggle_app_access, :admin, @company], class: "tags has-addons", remote: true) do
+                  %span.tag App Access
+                  - if @company.has_app_access
+                    %span.tag.is-success#app-status-display
+                      %i.far.fa-check-circle.fa-fw
+                  - else
+                    %span.tag.is-danger#app-status-display
+                      %i.far.fa-times-circle.fa-fw
+              .control
+                = link_to([:toggle_admin_access, :admin, @company], class: "tags has-addons", remote: true) do
+                  %span.tag Admin Access
+                  - if @company.has_admin_access
+                    %span.tag.is-success#admin-status-display
+                      %i.far.fa-check-circle.fa-fw
+                  - else
+                    %span.tag.is-danger#admin-status-display
+                      %i.far.fa-times-circle.fa-fw
+          .columns
+            .column
+              %address
+                = @company.street
+                %br
+                = @company.city + " " + @company.state + " " + @company.zipcode
+            .column.is-3  
+              .level
+                .level-item.has-text-centered
+                  %p
+                    %span.icon-card.teal.is-pulled-left
+                      %i.far.fa-users.fa-fw
+                    %span.is-pulled-right{ style: 'padding: 10px;'}
+                      = @company.users.count
+                .level-item.has-text-centered
+                  %p
+                    %span.icon-card.blue.is-pulled-left
+                      %i.far.fa-truck.fa-fw
+                    %span.is-pulled-right{ style: 'padding: 10px;'}
+                      = @company.trucks.count
+                .level-item.has-text-centered
+                  %p
+                    %span.icon-card.purple.is-pulled-left
+                      %i.far.fa-clipboard-list.fa-fw
+                    %span.is-pulled-right{ style: 'padding: 10px;'}
+                      = @company.reports.count
+        .columns
+          .column
+            %h2.title.is-4 
+              = link_to 'Recent Reports', [:admin, @company, :reports]
+            %table.table.is-fullwidth
+              %thead
+                %tr
+                  %th Record Number
+                  %th Logged By
+                  %th Status
+              %tbody
+                = render partial: 'report', collection: @reports
+          .column
+            %h2.title.is-4 
+              = link_to 'Assets', [:admin, @company, :assets]
+            %table.table.is-fullwidth
+              %thead
+                %tr
+                  %th Number
+                  %th Type
+                  %th Status
+              %tbody
+                - @company.trucks.each do |t|
+                  %tr
+                    %td 
+                      = t.asset_number
+                    %td
+                      = t.type
+                    %td 
+                      = t.is_active? ? "Active" : "Inactive"
+                  
       .column
-        %h1.title #{@company.name}
-%section.section
-  .container
-    .columns
-      .column
-        %h2.title.is-4 Admins
-        %table.table
-          %thead
-            %tr
-              %th Employee Number
-              %th Full Name
-          %tbody
-            = render partial: 'user', collection: @company.company_admins
-      .column
-        %h2.title.is-4 Employees
-        %table.table
-          %thead
-            %tr
-              %th Employee Number
-              %th Full Name
-          %tbody
-            = render partial: 'user', collection: @company.employees
-      .column
-        %h2.title.is-4 
-          = link_to 'Recent Reports', [:admin, @company, :reports]
-        %table.table
-          %thead
-            %tr
-              %th Record Number
-              %th Logged By
-              %th Status
-          %tbody
-            = render partial: 'report', collection: @reports
+        %nav.panel
+          %p.panel-heading 
+            Admins
+            %span.is-pulled-right
+              = link_to([:new, :admin, @company, :user], class: 'button is-success is-small') do
+                %i.far.fa-plus.fa-fw
+          - @company.company_admins.each do |ca|
+            = link_to ca.fullname, admin_users_path(ca), class: 'panel-block'
+        %nav.panel
+          %p.panel-heading 
+            Employees
+            %span.is-pulled-right
+              = link_to([:new, :admin, @company, :user], class: 'button is-success is-small') do
+                %i.far.fa-plus.fa-fw            
+          - @company.employees.each do |e|
+            = link_to e.fullname, admin_users_path(e), class: 'panel-block'
+          .panel-block
+            = link_to("View All", [:admin, @company, :users], class: 'button is-info is-outlined is-fullwidth is-small')
+
+
       

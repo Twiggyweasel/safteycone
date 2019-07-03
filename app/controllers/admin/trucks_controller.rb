@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Admin::TrucksController < ApplicationController
   before_action :set_company
-  before_action :set_truck, only: [:show, :edit, :update, :destroy]
+  before_action :set_truck, except: [:index, :new, :create]
   def index
     @trucks = Truck.all
   end
@@ -13,7 +15,7 @@ class Admin::TrucksController < ApplicationController
 
   def create
     respond_to do |format|
-    @truck = @company.trucks.create(truck_params)
+      @truck = @company.trucks.create(truck_params)
       if @truck.save
         format.html  { redirect_to [:admin, @company, @truck] }
         format.js
@@ -37,19 +39,23 @@ class Admin::TrucksController < ApplicationController
     @truck.destroy
     redirect_to [:admin, @company, :trucks]
   end
-  
+
+  def toggle_status
+    @truck.toggle(:is_active).save!
+  end
+
   private
-  
+
     def truck_params
-      params.require(:truck).permit(:vehicle_number, :last_service_date, 
-                                    :last_odometer_reading, :last_odometer_date, 
+      params.require(:truck).permit(:vehicle_number, :last_service_date,
+                                    :last_odometer_reading, :last_odometer_date,
                                     :is_active, :company_id)
     end
-  
+
     def set_company
       @company = Company.find(params[:company_id])
     end
-  
+
     def set_truck
       @truck = Truck.find(params[:id])
     end

@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class Api::V1::ReportsController < ApplicationController
-  before_action :get_user, only: %i[show]
+  before_action :get_user
   before_action :get_report, only: %i[show]
   def index
+    @reports = @user.reports
   end
 
   def show; end

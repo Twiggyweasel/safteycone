@@ -1,2 +1,7 @@
 <!-- $('#new_truck).trigger('reset'); -->
 $("#trucks-container").prepend("<%= escape_javascript(render 'truck', truck: @truck) %>");
+$(':input','#new_truck')
+  .not(':button, :submit, :reset, :hidden')
+  .val('')
+  .prop('checked', false)
+  .prop('selected', false);

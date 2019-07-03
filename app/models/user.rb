@@ -17,9 +17,10 @@ class User < ApplicationRecord
   validates :account_type, presence: true
   validates :contact_number, presence: true
   validates :email, presence: true
+  validate :too_many_company_admins
 
   # callbacks
-  after_create :set_employee_number if :is_company_employee?
+  #   after_create :set_employee_number if :is_company_employee?
   # methods
   def is_company_employee?
     true if account_type != "admin"
@@ -34,6 +35,12 @@ class User < ApplicationRecord
   end
 
   def set_employee_number
-    update_column(:employee_number, company.id.to_s.rjust(3, '0') + self.id.to_s.rjust(3,'0'))
+    update_column(:employee_number, company.id.to_s.rjust(3, "0") + self.id.to_s.rjust(3, "0"))
+  end
+
+  def too_many_company_admins
+    if (self.account_type == "company_admin") && (self.company.company_admins.count >= 5)
+      errors.add(:base, :exceeded_admin_count)
+    end
   end
 end

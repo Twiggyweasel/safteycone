@@ -42,6 +42,6 @@
                 Check to mark active
             .field.is-grouped.is-grouped-right
               %p.control
-                = f.submit("Create", class: 'button is-success')
+                = button_tag('submit', type: 'submit', class: 'button is-success', data: { disable_with: "<i class='fas fa-spinner fa-spin'></i>".html_safe })
               %p.control
                 = link_to 'Clear', "#", class: 'button is-light'

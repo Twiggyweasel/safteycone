@@ -17,7 +17,7 @@
         = f.text_field :city, class: 'input', placeholder: 'City'
       .field
         .select
-          = f.select :state, options_for_select(states, @report.state), { prompt: 'State'}
+          = f.select :state, options_for_select(states, @report.state), { prompt: 'State' }
       .field
         = f.text_field :zipcode, class: 'input', placeholder: 'Zipcode'
   .field
@@ -35,13 +35,13 @@
         = f.date_field :completion_date, class: 'input'
       .field
         = f.time_field :completion_date, class: 'input'
-  .field
-    %h4.title.is-4 Truck Details
-  = f.fields_for :truck_checks do |ff|
+    .field
+  %h4.title.is-4 Asset Details
+  = f.fields_for :asset_checks do |ff|
     .field.is-fullwidth
       %p.control.has-icons-left
         %span.select.is-fullwidth
-          = ff.select :truck_id, options_for_select(@company.trucks.active.map { |u| [u.vehicle_number, u.id] }), { prompt: 'Choose a Truck'}
+          = ff.select :asset_id, options_for_select(@company.assets.active.map { |u| [u.asset_number, u.id] }), { prompt: 'Choose an Asset'}
         %span.icon.is-small.is-left
           %i.far.fa-truck
     .field
@@ -66,6 +66,7 @@
       .field
         = ff.label :remarks, class: 'label'
         = ff.text_field :remarks, class: 'textarea'
+      
   .field.is-grouped.is-grouped-centered
     %p.control
       = f.submit @report.new_record? ? "Create Report" : "Update Report", class: 'button is-success'

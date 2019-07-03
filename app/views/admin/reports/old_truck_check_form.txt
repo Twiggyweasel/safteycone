@@ -1,0 +1,31 @@
+  .field
+    %h4.title.is-4 Truck Details
+  = f.fields_for :truck_checks do |ff|
+    .field.is-fullwidth
+      %p.control.has-icons-left
+        %span.select.is-fullwidth
+          = ff.select :truck_id, options_for_select(@company.trucks.active.map { |u| [u.vehicle_number, u.id] }), { prompt: 'Choose a Truck'}
+        %span.icon.is-small.is-left
+          %i.far.fa-truck
+    .field
+      %p.control.has-icons-left
+        = ff.number_field :odometer_reading, class: 'input', placeholder: 'Odometer Reading'
+        %span.icon.is-small.is-left
+          %i.far.fa-tachometer-alt-slow
+    .field
+      %label.checkbox
+        = ff.check_box :has_defects, id: 'has_defects' 
+        Were any defects identified on the vehicle
+    #defect_box.field{ style: 'display: none;'}
+      = ff.label :defects, class: 'label'
+      .columns
+        - Defect.in_batches(of: 10).each do |batch|
+          .column
+            - batch.each do |d|
+              .field
+                %label.checkbox
+                  = ff.check_box :defect_ids, { multiple: true }, d.id, false
+                  #{d.name}   
+      .field
+        = ff.label :remarks, class: 'label'
+        = ff.text_field :remarks, class: 'textarea'

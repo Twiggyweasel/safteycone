@@ -17,19 +17,20 @@
               %p.title.is-4 Report Details
               %p 
                 %span.has-text-weight-semibold Location: 
-                #{@report.city} #{@report.state}
+                = @report.city + ", " + @report.state
               %p 
                 %span.has-text-weight-semibold Completed: 
-                #{@report.completion_date.strftime("%m/%d/%Y at %I:%M%p")}
+                = @report.completion_date.strftime("%m/%d/%Y at %I:%M%p")
               %p 
-                %span.has-text-weight-semibold Truck: 
-                #{@report.trucks.first.vehicle_number}
+                %span.has-text-weight-semibold
+                  = @report.assets.first.type
+                = @report.assets.first.asset_number
               %p 
                 %span.has-text-weight-semibold Odometer: 
-                #{@report.truck_checks.first.odometer_reading}
+                = @report.asset_checks.first.odometer_reading
               %p 
                 %span.has-text-weight-semibold Cleared: 
-                #{@report.is_complete? ? "Yes" : "No"}
+                = @report.is_complete? ? "Yes" : "No"
         .columns{:style => 'margin-top: 2rem; margin-bottom: 2rem;'}
           .column
             = link_to 'Company', [:admin, @company], class: 'button is-primary'

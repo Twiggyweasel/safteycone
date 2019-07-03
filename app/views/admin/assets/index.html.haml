@@ -1,0 +1,42 @@
+.container
+  .columns
+    .column
+      = link_to "Return to Company", [:admin, @company], class: 'button is-light'
+%section.section
+  .container
+    .columns
+      .column
+        %h1.title.is-inline-block
+          = @company.name + " Assets"
+        %span.is-pulled-right
+          .dropdown.is-hoverable
+            .dropdown-trigger
+              %button.button
+                %span Create New Asset
+                %span.icon.is-small
+                  %i.fas.fa-angle-down
+              .dropdown-menu
+                .dropdown-content
+                  = link_to 'Truck', [:new, :admin, @company, :asset, :type => "Truck"], class: 'dropdown-item'
+                  = link_to 'Trailer', [:new, :admin, @company, :asset, :type => "Trailer"], class: 'dropdown-item'
+    .columns
+      .column
+        %table.table.is-fullwidth.is-striped
+          %thead
+            %tr
+              %th Number
+              %th Type
+              %th Odometer Reading
+              %th Status
+          %tbody
+            - @assets.each do |a|
+              %tr
+                %td
+                  = a.asset_number
+                %td
+                  = a.type
+                %td
+                  = a.last_odo_reading.blank? ?  "N/A" : a.last_odo_reading
+                %td
+                  = a.is_active? ? "Active" : "Inactive"
+                  

@@ -1,0 +1,3 @@
+<% success_i = "<i class='far fa-check-circle fa-fw'></i>".html_safe %>
+<% fail_i = "<i class='far fa-times-circle fa-fw'></i>".html_safe %>
+$("#admin-status-display").replaceWith("<span class='tag <%= @company.has_admin_access? ? 'is-success' : 'is-danger' %>' id='admin-status-display'><%= @company.has_admin_access? ? success_i : fail_i %></span>");

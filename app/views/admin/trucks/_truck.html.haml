@@ -1,4 +1,4 @@
-%tr
+%tr{ id: 'truck-' + truck.id.to_s }
   %td 
     = link_to truck.vehicle_number, [:admin, @company, truck]
   %td #{truck.last_odometer_reading}
@@ -6,4 +6,5 @@
     = truck.last_odometer_date.strftime('%m/%d/%Y') unless truck.last_odometer_date.blank?
   %td 
     = truck.last_service_date.strftime('%m/%d/%Y') unless truck.last_service_date.blank?
-  %td #{truck.is_active? ? "Active" : "Inactive"}
+  %td#status 
+    = link_to truck.is_active? ? "Active" : "Inactive", toggle_status_admin_company_truck_path(@company, truck), remote: true

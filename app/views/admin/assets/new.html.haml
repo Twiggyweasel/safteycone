@@ -1,0 +1,7 @@
+- if params[:type] == "Truck"
+  =render 'truck_form.html'
+- elsif params[:type] == "Trailer" 
+  = render 'trailer_form.html'
+- else
+  %h1 You failed
+  

@@ -1,5 +1,12 @@
+.container
+  .columns
+    .column.is-4.is-offset-4
+      %h1.title.is-2.custom-centered-header Dashboard
 %section.section
   .container
     .columns
       .column
-        %h1.title.is-2 Dashboard
+        %h1.title Companies
+  .container
+    .columns.is-multiline.is-2
+      = render partial: 'admin/pages/company', collection: @companies, as: :company

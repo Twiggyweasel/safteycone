@@ -12,7 +12,7 @@ class Admin::ReportsController < ApplicationController
 
   def new
     @report = Report.new
-    @report.truck_checks.build
+    @report.asset_checks.build
   end
 
   def create
@@ -44,13 +44,13 @@ class Admin::ReportsController < ApplicationController
   private
 
     def report_params
-      params.require(:report).permit(:record_number, :is_complete, :street, :city, :state, :zipcode, 
-                                     :completion_date, :company_id, :user_id, 
-                                     truck_checks_attributes: [:truck_id, :report_id, :odometer_reading, :has_defects, defect_ids: []])
+      params.require(:report).permit(:record_number, :is_complete, :street, :city, :state, :zipcode,
+                                     :completion_date, :company_id, :user_id,
+                                     asset_checks_attributes: [:asset_id, :report_id, :odometer_reading, :has_defects, :remarks, defect_ids: []])
     end
 
     def set_company
-      @company = Company.includes(:reports).find(params[:company_id])
+      @company = Company.find(params[:company_id])
     end
 
     def set_report

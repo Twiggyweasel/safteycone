@@ -7,7 +7,11 @@ json.user do
   json.provision_key @user.company.provision_key
   json.reports @user.reports do |r|
     json.id r.id
-    json.record_id r.record_id
+    json.record_id r.record_number
     json.is_complete r.is_complete
+  end
+  json.meta do
+    json.report_counts @user.reports.count
+    json.last_report @user.reports.last.created_at.strftime("%m/%d/%y %I:%M %p")
   end
 end

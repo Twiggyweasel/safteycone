@@ -1,0 +1,1 @@
+$("#truck-<%= @truck.id %> #status").replaceWith("<td id='status'><%=j link_to(@truck.is_active? ? "Active" : "Inactive", toggle_status_admin_company_truck_path(@company, @truck), remote: true) %></td>");

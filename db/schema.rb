@@ -10,28 +10,65 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_28_204409) do
+ActiveRecord::Schema.define(version: 2019_07_02_034505) do
+
+  create_table "asset_checks", force: :cascade do |t|
+    t.string "record_number"
+    t.float "odometer_reading"
+    t.text "remarks"
+    t.boolean "has_defects", default: false
+    t.boolean "cleared", default: false
+    t.string "checkable_type"
+    t.integer "checkable_id"
+    t.integer "report_id"
+    t.integer "asset_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["asset_id"], name: "index_asset_checks_on_asset_id"
+    t.index ["checkable_type", "checkable_id"], name: "index_asset_checks_on_checkable_type_and_checkable_id"
+    t.index ["report_id"], name: "index_asset_checks_on_report_id"
+  end
+
+  create_table "asset_checks_defects", id: false, force: :cascade do |t|
+    t.integer "defect_id", null: false
+    t.integer "asset_check_id", null: false
+  end
+
+  create_table "assets", force: :cascade do |t|
+    t.string "type"
+    t.string "asset_number"
+    t.date "last_service_date"
+    t.float "last_odo_reading"
+    t.datetime "last_odo_read_date"
+    t.boolean "is_active", default: true
+    t.integer "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_assets_on_company_id"
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.string "zipcode"
     t.string "provision_key"
     t.integer "user_cap"
     t.boolean "has_app_access", default: true
     t.boolean "has_admin_access", default: true
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "defects", force: :cascade do |t|
     t.string "name"
-    t.boolean "is_active"
+    t.boolean "is_truck_defect", default: false
+    t.boolean "is_trailer_defect", default: false
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "defects_truck_checks", id: false, force: :cascade do |t|
-    t.integer "defect_id", null: false
-    t.integer "truck_check_id", null: false
   end
 
   create_table "reports", force: :cascade do |t|
@@ -47,20 +84,6 @@ ActiveRecord::Schema.define(version: 2019_05_28_204409) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_reports_on_user_id"
-  end
-
-  create_table "truck_checks", force: :cascade do |t|
-    t.string "record_number"
-    t.float "odometer_reading"
-    t.boolean "has_defects", default: false
-    t.boolean "is_cleared", default: false
-    t.text "remarks"
-    t.integer "report_id"
-    t.integer "truck_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["report_id"], name: "index_truck_checks_on_report_id"
-    t.index ["truck_id"], name: "index_truck_checks_on_truck_id"
   end
 
   create_table "trucks", force: :cascade do |t|

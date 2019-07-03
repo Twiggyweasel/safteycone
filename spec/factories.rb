@@ -6,7 +6,7 @@ FactoryBot.define do
     account_type { 'admin' }
     contact_number { '9139139922' }
     email { 'test@test.com' }
-    employee_number { '999' }
+    employee_number { rand(1..900) }
   end
   
   factory :company do

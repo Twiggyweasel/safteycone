@@ -8,4 +8,6 @@ class Asset < ApplicationRecord
 
   validates :asset_number, presence: true, length: { in: 3..15 }
   validates_uniqueness_of :asset_number, scope: :company
+  validates :type, presence: true
+  validates :last_service_date, presence: true
 end

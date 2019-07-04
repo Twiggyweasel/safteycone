@@ -1,7 +1,6 @@
-- if params[:type] == "Truck"
-  =render 'truck_form.html'
-- elsif params[:type] == "Trailer" 
-  = render 'trailer_form.html'
-- else
-  %h1 You failed
-  
+%section.section
+  .container
+    .columns
+      .column.is-4.is-offset-4
+        .h1.title Create Asset
+        = render 'form'

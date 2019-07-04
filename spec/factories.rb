@@ -6,7 +6,7 @@ FactoryBot.define do
     account_type { 'admin' }
     contact_number { '9139139922' }
     email { 'test@test.com' }
-    employee_number { rand(1..900) }
+    employee_number { rand(1..9000000) }
   end
   
   factory :company do
@@ -46,6 +46,28 @@ FactoryBot.define do
     last_odo_reading { 1000.1 }
     is_active { true }
   end
+  
+  factory :truck, parent: :asset, class: 'Truck' do
+    company
+    
+    type { 'Truck' }
+    asset_number { rand(100..10000).to_s }
+    last_service_date { Time.now }
+    last_odo_read_date { Time.now }
+    last_odo_reading { 1000.1 }
+    is_active { true }
+  end
+  
+  factory :trailer, parent: :asset, class: 'Trailer' do
+    company
+    
+    type { 'Trailer' }
+    asset_number { rand(100..10000).to_s }
+    last_service_date { Time.now }
+    last_odo_read_date { Time.now }
+    last_odo_reading { 1000.1 }
+    is_active { true }
+  end  
   
   factory :asset_check do
     asset

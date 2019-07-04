@@ -12,32 +12,32 @@ RSpec.describe User, type: :model do
       expect(subject).to be_valid
     end
 
-    it "is not valid with first_name" do 
+    it "is invalid without first_name" do 
       subject.first_name = nil
       expect(subject).to_not be_valid
     end
 
-    it "is not valid without last_name" do 
+    it "is invalid without last_name" do 
       subject.last_name = nil
       expect(subject).to_not be_valid
     end
 
-    it "is not valid without contact_number" do
+    it "is invalid without contact_number" do
       subject.contact_number = nil
       expect(subject).to_not be_valid
     end
 
-    it "is not valid without email" do
+    it "is invalid without email" do
       subject.email = nil
       expect(subject).to_not be_valid
     end
 
-    it "is not valid without account_type" do
+    it "is invalid without account_type" do
       subject.account_type = nil
       expect(subject).to_not be_valid
     end
 
-    it "is not valid when is employee and company is missing" do
+    it "is invalid when is employee and company is missing" do
       subject.account_type = "employee"
       expect(subject).to_not be_valid
     end

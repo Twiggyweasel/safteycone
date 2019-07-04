@@ -1,0 +1,27 @@
+= form_for [:admin, @company, @asset.becomes(Asset)] do |f|
+  .field
+    = f.label :asset_number, class: 'label'
+    = f.text_field :asset_number, class: 'input'
+    = render 'admin/shared/inline_error', error: @asset.errors[:asset_number].first if @asset.errors[:asset_number].any?
+  .field
+    = f.label :type, class: 'label'
+    = f.select(:type, [['Trailer', 'Trailer'], ['Truck', 'Truck']], { prompt: 'Select one...'}, class: 'input')
+    = render 'admin/shared/inline_error', error: @asset.errors[:type].first if @asset.errors[:type].any?
+  .field
+    = f.label :last_service_date , class: 'label'
+    = f.date_field :last_service_date, class: 'input'
+    = render 'admin/shared/inline_error', error: @asset.errors[:last_service_date].first if @asset.errors[:last_service_date].any?
+  .field
+    = f.label :last_odo_read_date, "Last Odometer Read Date", class: 'label'
+    = f.date_field :last_service_date, class: 'input'
+    = render 'admin/shared/inline_error', error: @asset.errors[:last_service_date].first if @asset.errors[:last_service_date].any?  
+  .field
+    = f.label :last_odo_reading, "Last Odometer Reading",class: 'label'
+    = f.number_field :last_odo_reading, class: 'input'
+    = render 'admin/shared/inline_error', error: @asset.errors[:last_odo_reading].first if @asset.errors[:last_odo_reading].any?
+  .field
+    = f.label :is_active, class: 'checkbox' do
+      = f.check_box :is_active
+      Asset is Active
+  = f.submit
+  

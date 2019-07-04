@@ -19,4 +19,5 @@
 # end
 class Truck < Asset
   validates :last_odo_reading, presence: true, length: { in: 1..10 }
+  validates :last_odo_read_date, presence: true
 end

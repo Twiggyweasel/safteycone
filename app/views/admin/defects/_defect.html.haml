@@ -1,0 +1,12 @@
+%tr
+  %td 
+    = defect.id
+  %td
+    = link_to defect.name, [:admin, defect]
+  %td
+    = defect.is_truck_defect? ? 'Yes' : 'No'
+  %td
+    = defect.is_trailer_defect? ? 'Yes' : 'No'
+  %td
+    = defect.is_active? ? 'Active' : 'Disabled'
+ 

@@ -1,12 +1,19 @@
-.container
-  .columns
-    .column.is-4.is-offset-4
-      %h1.title.is-2.custom-centered-header Dashboard
 %section.section
   .container
     .columns
       .column
-        %h1.title Companies
+        %hq.title
+          Dashboard
+%section.section
   .container
-    .columns.is-multiline.is-2
-      = render partial: 'admin/pages/company', collection: @companies, as: :company
+    .columns
+      .column.is-8.is-offset-2
+        .columns
+          .column.is-half
+            = link_to([:admin, :companies], class: 'box dashboard-box') do
+              %div.has-text-centered{style: 'width: 100%;'}
+                %h4.title.is-4 Companies
+          .column.is-half
+            = link_to([:admin, :defects], class: 'box dashboard-box') do
+              %div.has-text-centered{style: 'width: 100%;'}
+                %h4.title.is-4 Defects

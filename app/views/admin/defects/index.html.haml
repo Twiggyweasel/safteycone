@@ -1,0 +1,15 @@
+%section.section
+  .container
+    .columns
+      .column.is-8.is-offset-2
+        %h1.title Defects
+        %table.table.is-fullwidth.is-hoverable
+          %thead
+            %tr
+              %th Record Number
+              %th Name
+              %th For Trucks
+              %th For Trailers
+              %th Status
+          %tbody
+            = render @defects

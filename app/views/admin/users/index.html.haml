@@ -1,0 +1,15 @@
+= render 'admin/shared/return_link', link_text: 'Company', link: [:admin, @company]
+%section.section
+  .container
+    .columns
+      .column.is-half.is-offset-one-quarter
+        %h1.title
+          = @company.name + " Users"
+        %table.table
+          %thead
+            %tr
+              %th Employee Number
+              %th Name
+              %th Type
+          %tbody
+            = render @users

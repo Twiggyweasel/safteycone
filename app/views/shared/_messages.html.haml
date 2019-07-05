@@ -1,0 +1,14 @@
+- flash.each do |type, message |
+  %section.section
+    .container
+      .columns
+        .column.is-4.is-offset-4
+          %article.message.is-success
+            .message-header
+              %p
+                = type.capitalize
+              %button.delete#message-delete
+            .message-body
+              = message
+
+

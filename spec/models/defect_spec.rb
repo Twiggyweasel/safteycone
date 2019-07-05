@@ -16,11 +16,6 @@ RSpec.describe Defect, type: :model do
       subject.name = nil
       expect(subject).to be_invalid
     end
-    
-    it "will be invalid if active and not a truck defect" do
-      subject.is_truck_defect = false
-      expect(subject).to be_invalid
-    end
   end
   
   describe "#is_active?" do

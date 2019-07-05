@@ -1,0 +1,24 @@
+= form_for [:admin, @defect] do |f|
+  .field
+    = f.label :name, class: 'label'
+    = f.text_field :name, class: 'input'
+    = render 'admin/shared/inline_error', error: @defect.errors[:name].first if @defect.errors[:name].any?
+  .field
+    %label.checkbox
+      = f.check_box :is_truck_defect
+      Defect is available for Trucks
+      = render 'admin/shared/inline_error', error: @defect.errors[:is_truck_defect].first if @defect.errors[:is_truck_defect].any?
+  .field
+    %label.checkbox
+      = f.check_box :is_trailer_defect
+      Defect is available for Trailers
+      = render 'admin/shared/inline_error', error: @defect.errors[:is_trailer_defect].first if @defect.errors[:is_trailer_defect].any?
+  .field
+    %label.checkbox
+      = f.check_box :is_active
+      Defect is active
+  .field.is-grouped
+    %p.control
+      = f.submit class: 'button is-link'
+    %p.control
+      = link_to 'Cancel', @defect.new_record? ? [:admin, :defects] : [:admin, @defect], class: 'button'

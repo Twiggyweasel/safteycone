@@ -16,3 +16,9 @@
 //= require turbolinks
 //= require fontawesome-all.js
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  $("#message-delete").on("click",function(){
+    $(this).closest('.section').remove();     
+  });
+});

@@ -7,9 +7,4 @@ class Defect < ApplicationRecord
   scope :trailer_defects, -> { where(is_trailer_defect: true) }
 
   validates :name, presence: true
-  validates :is_truck_defect, acceptance: true if :is_active?
-
-  def is_active?
-    is_active
-  end
 end

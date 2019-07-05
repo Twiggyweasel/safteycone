@@ -1,0 +1,26 @@
+%section.section
+  .container
+    .columns
+      .column.is-4.is-offset-4
+        %h1.title.is-inline-block
+          = @defect.name
+        - if @defect.is_active
+          %span.is-pulled-right.tag.is-success.is-medium#active-tag Active 
+        - else
+          %span.is-pulled-right.tag.is-danger.is-medium#disabled-tag Disabled           
+
+        .box
+          .h4.title.is-4
+            Defect Available For
+          .ul
+            - if @defect.is_truck_defect
+              .li Trucks
+            - if @defect.is_trailer_defect
+              .li Trailers 
+        .field.is-grouped
+          %span.control
+            = link_to 'View All', [:admin, :defects], class: 'button is-primary'        
+          %span.control
+            = link_to 'Update Defect', [:edit, :admin, @defect], class: 'button is-link'
+          %span.control
+            = link_to 'Delete', [:admin, @defect], method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-danger is-outlined' 

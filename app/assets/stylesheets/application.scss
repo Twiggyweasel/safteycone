@@ -15,6 +15,15 @@
  *= require_self
  */
 
+.dashboard-box {
+  min-height: 150px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+
 .field_with_errors .input {
   border-color: #ff3860
 }

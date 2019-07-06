@@ -1,0 +1,20 @@
+= render 'admin/shared/return_link', link_text: 'Dashboard', link: admin_dashboard_path
+
+%section.section
+  .container
+    .columns
+      .column.is-8.is-offset-2
+        %h1.title.is-inline-block Companies
+        %span.is-pulled-right
+          = link_to 'Create Company', [:new, :admin, :company], class: 'button is-primary'
+        %table.table.is-fullwidth
+          %thead
+            %tr
+              %th Client Name
+              %th Provision Key
+              %th User Cap
+              %th Actions
+          %tbody
+            = render @companies
+            
+        

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+  root to: "admin/pages#dashboard"
+  
   get '/admin', to: redirect('/admin/dashboard')
   namespace :admin, :admin => true  do
     get 'dashboard', to: 'pages#dashboard'

@@ -16,7 +16,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    @user.create(user_params)
+    @user = User.create(user_params)
     if @user.save
       redirect_to [:admin, @company, :users]
     else

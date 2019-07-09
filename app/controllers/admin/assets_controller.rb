@@ -18,7 +18,7 @@ class Admin::AssetsController < ApplicationController
     @asset = @company.assets.create(asset_params)
 
     if @asset.save
-      redirect_to [:admin, @company, @asset]
+      redirect_to [:admin, @company]
     else
       render :new
     end
@@ -28,7 +28,7 @@ class Admin::AssetsController < ApplicationController
 
   def update
     if @asset.update(asset_params)
-      rediect_to [:admin, @company, @asset]
+      rediect_to [:admin, @company]
     else
       render :edit
     end

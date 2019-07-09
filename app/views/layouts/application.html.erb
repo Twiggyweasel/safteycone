@@ -10,9 +10,11 @@
   </head>
 
   <body>
-    <%= render 'admin/shared/nav' if params[:admin] %>
+    <%= render 'admin/shared/nav' %>
     <%= render 'shared/messages' %>
     <!--<#%= params.inspect %>-->
     <%= yield %>
   </body>
 </html>
+
+<!--     <#%= render 'admin/shared/nav' if params[:admin] %> -->

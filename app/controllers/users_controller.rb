@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_company
+  before_action :set_company, except: [:new, :create]
   before_action :set_user, except: [:index, :new, :create]
 
   def index
@@ -11,10 +11,12 @@ class UsersController < ApplicationController
   def show; end
 
   def new
+    @company = Company.find(params[:company_id])
     @user = @company.users.new
   end
 
   def create
+    @company = Company.find(params[:company_id])
     @user = @company.users.create(user_params)
 
     if @user.save
@@ -42,7 +44,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).premit()
+      params.require(:user).permit(:first_name, :last_name, :account_type, :employee_number, :contact_number, :email, :password, :is_active)
     end
 
     def set_company

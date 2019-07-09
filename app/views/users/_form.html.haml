@@ -1,0 +1,32 @@
+.columns
+  .column.is-4.is-offset-4
+    = form_for([@company, @user]) do |f|
+      = f.hidden_field(:account_type, value: 'employee')
+      = f.hidden_field(:password, value: 'pinaccessonly')
+      .field
+        = f.label :first_name, class: 'label'
+        = f.text_field :first_name, class: 'input'
+        = render 'shared/inline_error', error: @user.errors[:first_name].first if @user.errors[:first_name].any?
+      .field
+        = f.label :last_name, class: 'label'
+        = f.text_field :last_name, class: 'input'
+        = render 'shared/inline_error', error: @user.errors[:last_name].first if @user.errors[:last_name].any?
+      .field
+        = f.label :email, class: 'label'
+        = f.email_field :email, class: 'input'
+        = render 'shared/inline_error', error: @user.errors[:email].first if @user.errors[:email].any?
+      .field
+        = f.label :employee_number, class: 'label'
+        = f.text_field :employee_number, class: 'input'
+        = render 'shared/inline_error', error: @user.errors[:employee_number].first if @user.errors[:employee_number].any?
+      .field
+        = f.label :contact_number, class: 'label'
+        = f.text_field :contact_number, class: 'input'
+        = render 'shared/inline_error', error: @user.errors[:contact_number].first if @user.errors[:contact_number].any?
+        
+      .field.is-grouped
+        %p.control
+          = f.submit class: 'button is-primary'
+        %p.control
+          = link_to 'Cancel', company_path(@company), class: 'button is-danger is-outlined'
+      

@@ -2,6 +2,9 @@
 
 # Users defines all users in applications SFA | Client Admin | Employees
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable, :registerable, :recoverable
+  devise :database_authenticatable, :rememberable, :validatable
   # defaults
   enum account_type: %i[admin company_admin employee]
 
@@ -10,7 +13,7 @@ class User < ApplicationRecord
   has_many :reports
 
   # validations
-  validates :employee_number, uniqueness: true, unless: :new_record?
+  validates :employee_number, presence: true, uniqueness: true
   validates :company, presence: true, if: :is_company_employee?
   validates :first_name, presence: true, length: { in: 3..50 }
   validates :last_name, presence: true, length: { in: 3..50 }

@@ -91,6 +91,14 @@
                       = t.type
                     %td 
                       = t.is_active? ? "Active" : "Inactive"
+                - @company.trailers.each do |t|
+                  %tr
+                    %td 
+                      = t.asset_number
+                    %td
+                      = t.type
+                    %td 
+                      = t.is_active? ? "Active" : "Inactive"
                   
       .column
         %nav.panel

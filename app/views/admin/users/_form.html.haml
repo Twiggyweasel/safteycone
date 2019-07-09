@@ -2,32 +2,32 @@
   .field
     = f.label :employee_number, class: 'label'
     = f.text_field :employee_number , class: 'input'
-    = render 'admin/shared/inline_error', error: @asset.errors[:employee_number].first if @asset.errors[:employee_number].any?
+    = render 'admin/shared/inline_error', error: @user.errors[:employee_number].first if @user.errors[:employee_number].any?
   .field
     = f.label :first_name, class: 'label'
     = f.text_field :first_name , class: 'input'
-    = render 'admin/shared/inline_error', error: @asset.errors[:first_name].first if @asset.errors[:first_name].any?
+    = render 'admin/shared/inline_error', error: @user.errors[:first_name].first if @user.errors[:first_name].any?
   .field
     = f.label :last_name, class: 'label'
     = f.text_field :last_name, class: 'input'
-    = render 'admin/shared/inline_error', error: @asset.errors[:last_name].first if @asset.errors[:last_name].any?
+    = render 'admin/shared/inline_error', error: @user.errors[:last_name].first if @user.errors[:last_name].any?
   .field
     = f.label :contact_number, class: 'label'
     = f.text_field :contact_number, class: 'input'
-    = render 'admin/shared/inline_error', error: @asset.errors[:contact_number].first if @asset.errors[:contact_number].any?
+    = render 'admin/shared/inline_error', error: @user.errors[:contact_number].first if @user.errors[:contact_number].any?
   .field
     = f.label :email, class: 'label'
     = f.text_field :email, class: 'input'
-    = render 'admin/shared/inline_error', error: @asset.errors[:email].first if @asset.errors[:email].any?
+    = render 'admin/shared/inline_error', error: @user.errors[:email].first if @user.errors[:email].any?
   .field
     = f.label :password, class: 'label'
     = f.text_field :password, class: 'input'
-    = render 'admin/shared/inline_error', error: @asset.errors[:password].first if @asset.errors[:password].any?
+    = render 'admin/shared/inline_error', error: @user.errors[:password].first if @user.errors[:password].any?
   .field
     = f.label :account_type, class: 'label'
     .select.is-fullwidth
       = f.select :account_type, options_for_select([['Company Admin', 'company_admin'], ['Employee', 'employee']]), { include_blank: 'Select one...'}, { class: 'is-fullwidth' }
-      = render 'admin/shared/inline_error', error: @asset.errors[:account_type].first if @asset.errors[:account_type].any?
+      = render 'admin/shared/inline_error', error: @user.errors[:account_type].first if @user.errors[:account_type].any?
   - unless @user.new_record?
     .field
       = f.label :is_active, class: 'checkbox' do

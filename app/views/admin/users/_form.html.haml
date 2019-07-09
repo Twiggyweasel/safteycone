@@ -16,7 +16,7 @@
     = f.text_field :password, class: 'input'
   .field
     = f.label :account_type, class: 'label'
-    .select.is-fullwidth'>
+    .select.is-fullwidth
       = f.select :account_type, options_for_select([['Company Admin', 'company_admin'], ['Employee', 'employee']]), { include_blank: 'Select one...'}, { class: 'is-fullwidth' }
   - unless @user.new_record?
     .field

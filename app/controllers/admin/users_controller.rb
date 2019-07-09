@@ -42,7 +42,7 @@ class Admin::UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :account_type, :company_id)
+      params.require(:user).permit(:first_name, :last_name, :account_type, :company_id, :employee_number, :is_active, :password, :contact_number, :email)
     end
 
     def set_company

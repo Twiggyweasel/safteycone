@@ -1,3 +1,4 @@
+= render 'admin/shared/errors', errors: @user.errors if @user.errors.any?
 = form_for [:admin, @company, @user] do |f|
   .field
     = f.label :employee_number, class: 'label'

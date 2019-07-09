@@ -5,8 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require 'ffaker'
-
 
 defects = [["Air Compressor", true, false], ["Air Lines", true, false], ["Battery", true, false], ["Belts/Hoses", true, false], 
            ["Body", true, false], ["Brake Accessories", true, false], ["Brake Connections", false, true], ["Brakes", false, true], 
@@ -25,6 +23,7 @@ defects = [["Air Compressor", true, false], ["Air Lines", true, false], ["Batter
   end
 
 if !Rails.env.production?
+  require 'ffaker'
   5.times do 
     c = Company.create(name: FFaker::Company.name, provision_key: FFaker::Skill.tech_skill, user_cap: 5, street: FFaker::AddressUS.street_address, city: FFaker::AddressUS.city, state: FFaker::AddressUS.state_abbr, zipcode: FFaker::AddressUS.zip_code)
     5.times do 

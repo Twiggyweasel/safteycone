@@ -3,12 +3,17 @@
 # Controller for Reports in the Admin Namespace
 class Admin::ReportsController < ApplicationController
   before_action :set_company
-  before_action :set_report, only: %i[show edit update destroy success]
+  before_action :set_report, only: %i[edit update destroy success]
   def index
-    @reports = @company.reports.includes(:user)
+    @reports = @company.reports.includes(:user, :asset_checks)
   end
 
-  def show; end
+  def show 
+    @report = Report.find(params[:id])
+    if @report.defects.any?
+      @report = Report.includes(:user, asset_checks: [:asset, :defects]).find(params[:id])
+    end
+  end
 
   def new
     @report = Report.new

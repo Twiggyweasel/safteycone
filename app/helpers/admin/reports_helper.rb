@@ -3,9 +3,9 @@
 module Admin::ReportsHelper
   def status_builder(complete)
     if complete
-      ("<span class='tag is-success is-medium is-pulled-right'>Complete</span>").html_safe
+      ("<span class='tag is-success is-large is-pulled-right'>Complete</span>").html_safe
     else
-      ("<span class='tag is-warning is-medium is-pulled-right'>In Progress</span>").html_safe
+      ("<span class='tag is-warning is-large is-pulled-right'>In Progress</span>").html_safe
     end
   end
 

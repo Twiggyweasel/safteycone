@@ -1,0 +1,21 @@
+.box{ style: 'min-height: 110px;'}
+  %h4.title.is-4.is-inline-block
+    %i.fal.fa-truck
+    Asset
+    = asset_check.asset.asset_number
+  %span.is-pulled-right
+    = asset_check.record_number
+    %br
+    - if asset_check.cleared
+      %span.tag.is-success.is-small.is-pulled-right Cleared 
+    - else
+      %span.tag.is-warning.is-medium.is-pulled-right{ style: 'margin-top: 10px;'} Pending 
+  - if asset_check.has_defects
+    %h6.title.is-6 Defects
+    .content
+      %p
+        - asset_check.defects.each do |d|
+          %span.tag.is-light.is-medium
+            = d.name
+    %h6.title.is-6 Remarks
+    = asset_check.remarks

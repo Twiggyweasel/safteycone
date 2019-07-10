@@ -22,15 +22,19 @@ defects = [["Air Compressor", true, false], ["Air Lines", true, false], ["Batter
     Defect.create(name: defects[i][0], is_truck_defect: defects[i][1], is_trailer_defect: defects[i][2], is_active: true)
   end
 
+
+
 if !Rails.env.production?
   require 'ffaker'
+  User.create(employee_number: '000', first_name: 'admin', last_name: 'admin', email: 'admin@safetycone.com', password: 'testing', is_active: true, contact_number: '9131111111', account_type: 'admin')
+  
   5.times do 
     c = Company.create(name: FFaker::Company.name, provision_key: FFaker::Skill.tech_skill, user_cap: 5, street: FFaker::AddressUS.street_address, city: FFaker::AddressUS.city, state: FFaker::AddressUS.state_abbr, zipcode: FFaker::AddressUS.zip_code)
     5.times do 
       Asset.create(asset_number: rand(100..999), last_service_date: Time.now - rand(1..5).days, last_odo_reading: rand(1000..99999), last_odo_read_date: Time.now - rand(1..5).days, is_active: rand(0..1), company_id: c.id, type: 'Truck')
     end
       5.times do 
-      u = User.create(employee_number: rand(1000..1900), first_name: FFaker::Name.first_name, last_name: FFaker::Name.last_name, contact_number: FFaker::PhoneNumber.short_phone_number, email: FFaker::Internet.email, account_type: rand(1..2), company_id: c.id)
+      u = User.create(employee_number: rand(1000..1900), first_name: FFaker::Name.first_name, last_name: FFaker::Name.last_name, contact_number: FFaker::PhoneNumber.short_phone_number, email: FFaker::Internet.email, account_type: rand(1..2), company_id: c.id, password: 'testing')
       5.times do
         Report.create(is_complete: true, street: FFaker::AddressUS.street_address, city: FFaker::AddressUS.city, state: FFaker::AddressUS.state_abbr, zipcode: FFaker::AddressUS.zip_code, completion_date: Time.now - rand(1..15).days, user_id: u.id)
       end

@@ -6,6 +6,7 @@ class Report < ApplicationRecord
   has_one :company, through: :user
   has_many :asset_checks, inverse_of: :report
   has_many :assets, through: :asset_checks
+  has_many :defects, through: :asset_checks
 
   accepts_nested_attributes_for :asset_checks, allow_destroy: true
 
@@ -21,4 +22,19 @@ class Report < ApplicationRecord
     update_column(:record_number, self.company.id.to_s + self.id.to_s.rjust(8, "0"))
     asset_checks.each do |ac| ac.set_record_number end
   end
+  
+  def total_defects
+    defects.count
+  end
+  
+  def is_complete?
+    asset_checks.all?(&:cleared)
+  end
+  
+  def process_report
+    if is_complete?
+      update_column(:is_complete, true)
+    end
+  end
+  
 end

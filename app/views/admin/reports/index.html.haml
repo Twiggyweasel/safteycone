@@ -1,4 +1,4 @@
-= link_to 'View Company', [:admin, @company]
+= render 'admin/shared/return_link', link_text: 'Dashboard', link: admin_company_path(@company)
 %section.section
   .container
     .columns

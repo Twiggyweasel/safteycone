@@ -1,7 +1,4 @@
-.container
-  .columns
-    .column
-      = link_to "Return to Company", [:admin, @company], class: 'button is-light'
+= render 'admin/shared/return_link', link_text: 'Company', link: admin_company_path(@company)
 %section.section
   .container
     .columns

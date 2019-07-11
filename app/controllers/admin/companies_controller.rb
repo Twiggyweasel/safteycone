@@ -18,7 +18,7 @@ class Admin::CompaniesController < ApplicationController
   def create
     @company = Company.create(company_params)
     if @company.save
-      redirect_to [:admin, @company], flash: { success: "Company successfully created!"}
+      redirect_to [:admin, @company], flash: { success: "Company successfully created!" }
     else
       render :new
     end
@@ -28,7 +28,7 @@ class Admin::CompaniesController < ApplicationController
 
   def update
     if @company.update(company_params)
-      redirect_to [:admin, @company], flash: { success: "Company successfully updated!"}
+      redirect_to [:admin, @company], flash: { success: "Company successfully updated!" }
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class Admin::CompaniesController < ApplicationController
 
   def destroy
     @company.delete
-    redirect_to %i[admin companies], flash: { success: 'Company successfully deleted'}
+    redirect_to %i[admin companies], flash: { success: "Company successfully deleted" }
   end
 
   def toggle_company_status

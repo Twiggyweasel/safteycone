@@ -18,7 +18,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = @company.users.create(user_params)
     if @user.save
-      redirect_to [:admin, @company, :users], flash: { success: 'User Successfully Created!'}
+      redirect_to [:admin, @company, :users], flash: { success: "User Successfully Created!" }
     else
       render :new
     end

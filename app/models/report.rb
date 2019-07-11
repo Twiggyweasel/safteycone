@@ -22,19 +22,18 @@ class Report < ApplicationRecord
     update_column(:record_number, self.company.id.to_s + self.id.to_s.rjust(8, "0"))
     asset_checks.each do |ac| ac.set_record_number end
   end
-  
+
   def total_defects
     defects.count
   end
-  
+
   def is_complete?
     asset_checks.all?(&:cleared)
   end
-  
+
   def process_report
     if is_complete?
       update_column(:is_complete, true)
     end
   end
-  
 end

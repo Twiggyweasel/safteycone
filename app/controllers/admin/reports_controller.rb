@@ -8,7 +8,7 @@ class Admin::ReportsController < ApplicationController
     @reports = @company.reports.includes(:user, :asset_checks)
   end
 
-  def show 
+  def show
     @report = Report.find(params[:id])
     if @report.defects.any?
       @report = Report.includes(:user, asset_checks: [:asset, :defects]).find(params[:id])

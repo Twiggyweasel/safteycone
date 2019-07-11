@@ -52,7 +52,7 @@
                     %span.icon-card.blue.is-pulled-left
                       %i.far.fa-truck.fa-fw
                     %span.is-pulled-right{ style: 'padding: 10px;'}
-                      = @company.trucks.count
+                      = @company.assets.count
                 .level-item.has-text-centered
                   %p
                     %span.icon-card.purple.is-pulled-left
@@ -82,7 +82,7 @@
                   %th Type
                   %th Status
               %tbody
-                - @company.trucks.each do |t|
+                - @company.assets.each do |t|
                   %tr
                     %td 
                       = t.asset_number

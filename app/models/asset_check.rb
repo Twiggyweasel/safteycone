@@ -10,24 +10,24 @@ class AssetCheck < ApplicationRecord
   validates :defects, length: { minimum: 1 }, if: :requires_defects_and_remarks
 
   after_save :assess_status
-  
+
   def requires_defects_and_remarks
     has_defects
   end
-  
+
   def assess_status
-    if has_defects and !cleared
+    if has_defects && !cleared
       trigger_report_processing
-    elsif !has_defects and !cleared
+    elsif !has_defects && !cleared
       update_column(:cleared, true)
       trigger_report_processing
     end
   end
-  
+
   def trigger_report_processing
     report.process_report
   end
-  
+
   def set_record_number
     update_column(:record_number, report.record_number + "-001")
   end

@@ -27,6 +27,7 @@ defects = [["Air Compressor", true, false], ["Air Lines", true, false], ["Batter
 if !Rails.env.production?
   require 'ffaker'
   User.create(employee_number: '000', first_name: 'admin', last_name: 'admin', email: 'admin@safetycone.com', password: 'testing', is_active: true, contact_number: '9131111111', account_type: 'admin')
+
   
   5.times do 
     c = Company.create(name: FFaker::Company.name, provision_key: FFaker::Skill.tech_skill, user_cap: 5, street: FFaker::AddressUS.street_address, city: FFaker::AddressUS.city, state: FFaker::AddressUS.state_abbr, zipcode: FFaker::AddressUS.zip_code)
@@ -40,4 +41,6 @@ if !Rails.env.production?
       end
     end
   end
+
+    User.create(employee_number: '000', first_name: 'admin', last_name: 'Company', email: 'compadmin@safetycone.com', password: 'testing', is_active: true, contact_number: '9131111111', account_type: 'company_admin', company: Company.first)
 end

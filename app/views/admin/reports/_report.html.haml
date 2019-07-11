@@ -4,6 +4,13 @@
   %td #{report.is_complete? ? "Complete" : "In Progress"}
   %td #{report.created_at.strftime("%m/%d/%Y")}
   %td
-    = link_to 'view', [:admin, @company, report] 
-    |
-    = link_to 'update', [:edit, :admin, @company, report]
+    .field.is-grouped
+      %p.control
+        = link_to([:admin, @company, report], class: 'button is-info') do
+          %i.fa.fa-eye
+      %p.control
+        = link_to([:edit, :admin, @company, report], class: 'button is-warning') do
+          %i.fa.fa-pencil
+      %p.control
+        = link_to([:admin, @company, @report], method: :delete, class: 'button is-danger') do
+          %i.fa.fa-trash

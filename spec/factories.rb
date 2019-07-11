@@ -1,18 +1,29 @@
 FactoryBot.define do
   
+  factory :admin_user, class: 'User' do
+    first_name { "User" }
+    last_name { 'Name' } 
+    account_type { 'admin' }
+    contact_number { '9139139922' }
+    email { FFaker::Internet.email }
+    employee_number { rand(1..9000000) }
+    password { "testing" }
+  end
+ 
   factory :user do
     first_name { "User" }
     last_name { 'Name' } 
     account_type { 'admin' }
     contact_number { '9139139922' }
-    email { 'test@test.com' }
+    email { FFaker::Internet.email }
     employee_number { rand(1..9000000) }
+    password { "testing" }
   end
   
   factory :company do
     name { FFaker::Company.name }
     provision_key { FFaker::Skill.tech_skill } 
-    user_cap { 5 } 
+    user_cap { 99 } 
     street { FFaker::AddressUS.street_address } 
     city { FFaker::AddressUS.city } 
     state { FFaker::AddressUS.state_abbr } 

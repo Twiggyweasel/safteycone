@@ -54,4 +54,5 @@ group :test do
   gem 'webdrivers'
   gem 'simplecov', require: false
   gem 'shoulda-matchers'
+  gem 'database_cleaner'
 end

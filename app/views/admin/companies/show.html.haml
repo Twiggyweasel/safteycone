@@ -100,16 +100,16 @@
             %span.is-pulled-right
               = link_to([:new, :admin, @company, :user], class: 'button is-success is-small') do
                 %i.far.fa-plus.fa-fw
-          - @company.company_admins.each do |ca|
-            = link_to ca.fullname, admin_company_user_path(@company, ca), class: 'panel-block'
+          - @company.company_admins.each_with_index do |ca, i|
+            = link_to ca.fullname, admin_company_user_path(@company, ca), class: 'panel-block', id: "admin_#{i}"
         %nav.panel
           %p.panel-heading 
             Employees
             %span.is-pulled-right
               = link_to([:new, :admin, @company, :user], class: 'button is-success is-small') do
                 %i.far.fa-plus.fa-fw            
-          - @company.employees.each do |e|
-            = link_to e.fullname, admin_company_user_path(@company, e), class: 'panel-block'
+          - @company.employees.each_with_index do |e, i|
+            = link_to e.fullname, admin_company_user_path(@company, e), class: 'panel-block', id: "employee_#{i}"
           .panel-block
             = link_to("View All", [:admin, @company, :users], class: 'button is-info is-outlined is-fullwidth is-small')
 

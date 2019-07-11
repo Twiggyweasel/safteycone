@@ -7,7 +7,7 @@ require 'ffaker'
 require "rspec/rails"
 require "capybara/rspec"
 require 'support/factory_bot'
-# require "database_cleaner"
+require "database_cleaner"
 # Dir[Rails.root.join("spec/support/**/*.rb")].each { f require f}
 ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
@@ -20,9 +20,9 @@ RSpec.configure do |config|
 #     config.before(:each) do
 #         DatabaseCleaner.start
 #     ends
-#     config.before(:suite) do
-#         DatabaseCleaner.clean_with(:truncation)
-#     end
+    config.before(:suite) do
+        DatabaseCleaner.clean_with(:truncation)
+    end
 
   
     Capybara.register_driver :selenium do |app|
@@ -35,6 +35,8 @@ RSpec.configure do |config|
 #         save_and_open_screenshot
 #       end
 #     end
+  
+  config.include Warden::Test::Helpers
 end
 
 Shoulda::Matchers.configure do |config|

@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature "Defect Features", type: :feature do
+  before(:each) do
+    user = FactoryBot.create(:user)
+    login_as(user, :scope => :user)
+  end  
   context 'Create new Defect' do
     before(:each) do
       visit '/admin/defects/new'

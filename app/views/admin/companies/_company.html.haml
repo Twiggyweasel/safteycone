@@ -6,7 +6,10 @@
   %td
     = company.user_cap
   %td
-    = link_to [:admin, company, :users] do
-      %i.fas.fa-users.fa-lg{ style: 'margin-right: 5px' }
-    = link_to [:admin, company, :reports] do
-      %i.far.fa-clipboard-list-check.fa-lg{ style: 'margin-right: 5px' }
+    .field.is-grouped
+      %p.control
+        = link_to [:admin, company, :users], class: 'button is-light' do
+          %i.fas.fa-users.fa-lg.fa-fw{ style: 'margin-right: 5px' }
+      %p.control
+        = link_to [:admin, company, :reports], class: 'button is-light' do
+          %i.far.fa-clipboard-list-check.fa-lg.fa-fw{ style: 'margin-right: 5px' }

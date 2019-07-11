@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature "Company Features", type: :feature do
+  before(:each) do
+    user = FactoryBot.create(:user)
+    login_as(user, :scope => :user)
+  end  
   context 'Create new Company' do
     before(:each) do
       visit '/admin/companies/new'

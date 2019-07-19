@@ -19,9 +19,9 @@ json.report do
     json.asset asset_check.asset.asset_number
     json.has_defects asset_check.has_defects
     
-# #     json.defects asset_check.defects do |defect|
-# #       json.name = defect.name
-# #     end
+    json.defects asset_check.defects do |defect|
+      json.name defect.name
+    end
  
   end
 end

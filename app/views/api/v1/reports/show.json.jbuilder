@@ -6,6 +6,7 @@ json.user do
   json.company do
     json.id @user.company.id
     json.name @user.company.name
+  end
 end
 
 json.report do

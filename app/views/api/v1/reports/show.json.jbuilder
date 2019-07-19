@@ -11,7 +11,7 @@ end
 
 json.report do
   json.record_number @report.record_number
-  json.completion r.completion_date.try(:strftime, "%m/%d/%Y at %I:%M%p")
+  json.completion r.completion_date
   json.status @report.is_complete? ? "Complete" : "Pending"
   json.asset_checks @report.asset_checks.each do |asset_check|
     json.record_number asset_check.record_number

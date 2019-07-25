@@ -1,3 +1,0 @@
-<% success_i = "<i class='far fa-check-circle fa-fw'></i>".html_safe %>
-<% fail_i = "<i class='far fa-times-circle fa-fw'></i>".html_safe %>
-$("#app-status-display").replaceWith("<span class='tag <%= @company.has_app_access? ? 'is-success' : 'is-danger' %>' id='app-status-display'><%= @company.has_app_access? ? success_i : fail_i %></span>");

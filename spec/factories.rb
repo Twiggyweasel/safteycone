@@ -13,11 +13,12 @@ FactoryBot.define do
   factory :user do
     first_name { "User" }
     last_name { 'Name' } 
-    account_type { 'admin' }
+    account_type { 'employee' }
     contact_number { '9139139922' }
     email { FFaker::Internet.email }
     employee_number { rand(1..9000000) }
     password { "testing" }
+    
   end
   
   factory :company do

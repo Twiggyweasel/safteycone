@@ -1,0 +1,13 @@
+= render 'shared/page_title', title: 'Reports', link_label: 'New', link_route: [:new, @company, :report]
+.columns
+  .column.is-6.is-offset-3
+    %table.table.is-fullwidth
+      %thead
+        %tr
+          %td Record ID
+          %td Logged By
+          %td Logged
+          %td Asset Checked
+          %td Status
+      %tbody
+        = render @reports

@@ -16,6 +16,7 @@ gem "bulma-rails", "~> 0.7.4"
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rack-cors', :require => 'rack/cors'
 gem 'haml'
+gem 'haml-rails'
 gem 'devise'
 
 group :development, :test do
@@ -45,6 +46,7 @@ group :development do
   gem 'ruby_gntp'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem "brakeman"
 end
 
 group :test do

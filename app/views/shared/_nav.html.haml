@@ -1,0 +1,18 @@
+%nav.navbar.is-dark{role: 'navigation'}
+  .navbar-brand
+    = link_to([:admin, :dashboard], class: 'navbar-item') do
+      %i.fas.fa-traffic-cone.fa-lg{style: 'color: orange; margin-right: 5px'} 
+      SafetyCone
+  .navbar-menu
+    .navbar-start
+      = link_to 'Dashboard', [:admin, :dashboard], class: 'navbar-item'
+      = link_to'Companies', [:admin, :companies], class: 'navbar-item'
+      = link_to'Defects', [:admin, :defects], class: 'navbar-item'
+    .navbar-end
+      .navbar-item
+        .buttons
+          = link_to 'Login', new_user_session_path, class: 'button is-light' unless user_signed_in?
+          - if user_signed_in?
+            %span{ style: 'margin-right: 15px;'}
+              = 'Logged in as ' + current_user.fullname
+            = link_to 'Signout', destroy_user_session_path, :method => :delete, class: 'button is-danger'

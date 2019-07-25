@@ -1,0 +1,5 @@
+- success_i = "<i class='far fa-check-circle fa-fw'></i>".html_safe
+- fail_i = "<i class='far fa-times-circle fa-fw'></i>".html_safe
+$("#admin-status-display").replaceWith("
+%span#admin-status-display{:class => "tag #{@company.has_admin_access? ? 'is-success' : 'is-danger'}"}>= @company.has_admin_access? ? success_i : fail_i
+");

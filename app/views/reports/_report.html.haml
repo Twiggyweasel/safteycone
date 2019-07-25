@@ -1,0 +1,13 @@
+%tr
+  %td 
+    = report.record_number
+  %td
+    = report.user.fullname
+  %td
+    = report.completion_date.strftime('%m/%d/%Y')
+  %td
+    - report.asset_checks.each do |asset_check|
+      = asset_check.asset.asset_number
+      %br
+  %td
+    = report.is_complete? ? 'Complete' : 'Pending'

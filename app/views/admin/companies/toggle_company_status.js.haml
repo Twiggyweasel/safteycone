@@ -1,0 +1,11 @@
+- success_i = "<i class='far fa-check-circle fa-fw'></i>".html_safe
+- fail_i = "<i class='far fa-times-circle fa-fw'></i>".html_safe
+$("#company-status-display").replaceWith("
+%span#company-status-display{:class => "tag #{@company.is_active? ? 'is-success' : 'is-danger'}"}>= @company.is_active? ? success_i : fail_i
+");
+$("#app-status-display").replaceWith("
+%span#app-status-display{:class => "tag #{@company.has_app_access? ? 'is-success' : 'is-danger'}"}>= @company.has_app_access? ? success_i : fail_i
+");
+$("#admin-status-display").replaceWith("
+%span#admin-status-display{:class => "tag #{@company.has_admin_access? ? 'is-success' : 'is-danger'}"}>= @company.has_admin_access? ? success_i : fail_i
+");

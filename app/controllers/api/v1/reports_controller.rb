@@ -4,7 +4,7 @@ class Api::V1::ReportsController < ApplicationController
   before_action :get_user
   
   def index
-    @reports = @user.reports
+    @reports = @user.reports.incldues(:asset_checks)
   end
 
   def show

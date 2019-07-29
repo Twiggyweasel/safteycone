@@ -12,7 +12,7 @@ class Api::V1::ReportsController < ApplicationController
   end
 
   def create
-    @report = User.reports.create(report_params)
+    @report = @user.reports.create(report_params)
     if @report.save
       render status: 201, json: { message: "Report created successfully." }
     else

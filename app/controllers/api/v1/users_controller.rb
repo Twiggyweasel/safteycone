@@ -5,6 +5,11 @@ class Api::V1::UsersController < ApplicationController
 
   def show; end
 
+  def available_assets
+    @user = User.find(params[:id])
+    @assets = @user.company.assets.active
+  end
+  
   private
 
     def get_user

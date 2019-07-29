@@ -12,9 +12,9 @@ Rails.application.routes.draw do
       resources :reports do 
         get 'success', on: :member
       end
-      resources :trucks do 
-        get 'toggle_status', on: :member
-      end
+#       resources :trucks do 
+#         get 'toggle_status', on: :member
+#       end
       resources :assets
       resources :users
     end
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:show] do 
         resources :reports, only: [:index, :show, :create]
+        get 'available_assets', on: :member
       end
     end
   end

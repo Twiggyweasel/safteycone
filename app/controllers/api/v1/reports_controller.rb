@@ -4,7 +4,8 @@ class Api::V1::ReportsController < ApplicationController
   before_action :get_user
   
   def index
-    @reports = @user.reports.incldues(:asset_checks)
+#     @reports = @user.reports
+    @reports = Report.includes(:asset_checks).where(user: @user)
   end
 
   def show
